@@ -7,4 +7,6 @@ class Post(models.Model):
     author = models.CharField(max_length=100)
     email = models.EmailField(default='')
 
+    def __str__(self):
+        return self.title
    
