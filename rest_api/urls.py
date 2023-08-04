@@ -1,5 +1,10 @@
-from django.urls import path
-from .views import PostsView, posts_detail, PostsAPIView, postDetailsAPIView, genericApiView
+from django.urls import path, include
+from .views import PostsView, posts_detail, PostsAPIView, postDetailsAPIView, genericApiView, PostViewSet
+from rest_framework import routers
+
+router = routers.SimpleRouter()
+
+router.register('posts', PostViewSet, basename='posts')
 
 urlpatterns = [
     # path('posts/', PostsView),
@@ -9,5 +14,5 @@ urlpatterns = [
     # path('detailsApiView/<int:pk>', postDetailsAPIView.as_view()),
 
     path('genericApiView/<int:id>', genericApiView.as_view()),
-
+    path('', include(router.urls)),
 ]
